@@ -23,11 +23,23 @@
 			else
 			{	
 				//If somebody is logged in, display their name, a welcome message and a logout button
-					echo	'<label class="navLeft">
-									Welcome, ' . $_SESSION["name"] . 
-								'!</label>
-								<a href="processing/userLogout.php" class="navRight">Log Out</a>';
+				echo	'<label class="navLeft">
+								Welcome, ' . $_SESSION["name"] . 
+							'!</label>
+							<a href="processing/userLogout.php" class="navRight">Log Out</a>';
+				
+				//If the user an an approver, give them the ability to approve tickets
+				if($_SESSION['isApprover'])
+				{
+					echo '<a class="navRight">View Approval Requests</a>';
 				}
+				
+				//If the user is an analyst, give them the ability to vet tickets
+				if($_SESSION['isAnalyst'])
+				{
+					echo '<a class="navRight">Vet Tickets</a>';
+				}
+			}
 			?>
   	</nav>
 </body>

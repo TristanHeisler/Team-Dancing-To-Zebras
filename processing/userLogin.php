@@ -27,7 +27,7 @@
 	$password = mysqli_real_escape_string($connection, $_POST["password"]);
 
   //Determine if the user information exists in the database
-  $sql = "SELECT userID, name FROM User WHERE username = '$username' and password = '$password'";
+  $sql = "SELECT userID, name, isAnalyst FROM User WHERE username = '$username' and password = '$password'";
   $result = mysqli_query($connection, $sql);
 
   //If the provided information does not match an account, redirect the user
@@ -52,7 +52,21 @@
     $_SESSION["loggedIn"] = true; 
     $_SESSION["userID"] = $accountInfo['userID'];
     $_SESSION["name"] = $accountInfo['name'];
-	        
+    $_SESSION["isAnalyst"] = $accountInfo['isAnalyst'];
+    
+    //Determine if the user is an approver
+	  $sql = "SELECT softwareToolID FROM ApproverList WHERE approverID = " . $accountInfo['userID'];
+    $result = mysqli_query($connection, $sql);
+    
+    if(mysqli_num_rows($result))
+	  {
+      $_SESSION["isApprover"] = true;
+    }
+    else
+    {
+      $_SESSION["isApprover"] = false; 
+    }
+    
     //Free the result set and close the connection
 		mysqli_free_result($result);
 		mysqli_close($connection);
