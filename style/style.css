@@ -79,7 +79,7 @@ nav
   transform: translate(-145px, -62px);
 }
 
-.title
+.navLeft, .navRight, .title
 {	
 	color: #FFFFFF;
 	font: 20px rockwell;
@@ -87,4 +87,28 @@ nav
 	line-height: 50px;
 	padding-left: 10px;
 	padding-right: 10px;
+  text-decoration: none;
+}
+
+.navRight
+{
+	border-left: 2px;
+	border-left-color: #90EE90;
+	border-left-style: solid;
+	float: right;
+}
+
+.navRight:hover, .title:hover
+{
+	background-color: #90EE90;
+	color: #000000;
+}
+
+.title
+{
+	border-right: 2px;
+	border-right-color: #90EE90;
+	border-right-style: solid;
+	float: left;
+	font-size: 25px;
 }

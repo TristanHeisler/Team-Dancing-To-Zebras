@@ -20,7 +20,7 @@
   
 <body>
 	<nav>
-		<label class="title">Health & Environment Labs Limited</label>
+		<a href="index.php" class="title">Health & Environment Labs Limited</a>
 	</nav>
 	
 	<form action="processing/userLogin.php" method="post" enctype="multipart/form-data">

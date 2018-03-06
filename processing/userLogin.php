@@ -51,7 +51,7 @@
     //Store session information
     $_SESSION["loggedIn"] = true; 
     $_SESSION["userID"] = $accountInfo['userID'];
-    $_SESSION["username"] = $accountInfo['username'];
+    $_SESSION["name"] = $accountInfo['name'];
 	        
     //Free the result set and close the connection
 		mysqli_free_result($result);
