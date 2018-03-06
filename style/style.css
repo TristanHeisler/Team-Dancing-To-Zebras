@@ -65,24 +65,6 @@ nav
   border: 1px solid black;
 }
 
-.button
-{
-	background-color: #00B33C; 
-	border: 2px solid #094A09;
-	border-radius: 5px;
-	color: #FFFFFF;
-	padding-bottom: 1px;
-	padding-left: 5px;
-	padding-right: 5px;
-	padding-top: 1px;
-}
-
-.button:hover
-{
-	background-color: #094A09;
-	border: 2px solid #00B33C;
-}
-
 .evenRow
 {
   background-color: #388E3C;
@@ -93,6 +75,31 @@ nav
   background-color: #094A09;
   color: #FFFFFF;
   font-size: 20px;
+}
+
+.indexPageOptions
+{
+	border: none;
+	left: 50%;
+	position: absolute;
+	top: 50%;
+  transform: translate(-165px, -126px);
+}
+
+.largeButton
+{
+  background-color: #90EE90;
+	border: 5px solid #094A09;
+  border-radius: 30px;
+  font: 20px rockwell;
+  height: 150px;
+  width: 300px;
+}
+
+.largeButton:hover, .smallButton:hover
+{
+  background-color: #094A09;
+	border: 5px solid #90EE90;
 }
 
 .login
@@ -134,6 +141,24 @@ nav
 .oddRow
 {
   background-color: #90EE90;
+}
+
+.smallButton
+{
+	background-color: #00B33C; 
+	border: 2px solid #094A09;
+	border-radius: 5px;
+	color: #FFFFFF;
+	padding-bottom: 1px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 1px;
+}
+
+.smallButton:hover
+{
+  background-color: #094A09;
+	border: 2px solid #00B33C;
 }
 
 .title

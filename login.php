@@ -51,8 +51,8 @@
 				</tr>
 				<tr>
 					<td class="alignCenter" colspan="2">
-            <input class="button" type="reset" value="Clear" name="clear" id="clear"/>
-						<input class="button" type="submit" value="Log In" name="login" id="login"/>
+            <input class="smallButton" type="reset" value="Clear" name="clear" id="clear"/>
+						<input class="smallButton" type="submit" value="Log In" name="login" id="login"/>
 					</td>
 				</tr>
 			</table>
