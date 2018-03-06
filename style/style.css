@@ -1,0 +1,90 @@
+body
+{
+	background-color: #00B33C;
+	margin: 0%;
+}
+
+input.hideError
+{
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+input.showError
+{
+	background-color: #094A09;
+	color: #FFFFFF;
+}
+
+label.hideError
+{
+	display: none;
+}
+
+label.showError
+{
+	color: #000000;
+	display: inline;	
+  	display: inline-block;	
+}
+
+nav
+{
+	background-color: #094A09;
+	height: 50px;
+	margin-bottom: 5px;
+}
+
+.alignCenter
+{
+	text-align: center;
+}
+
+.alignLeft
+{
+	text-align: left;
+}
+
+.alignRight
+{
+	text-align: right;
+}
+
+.button
+{
+	background-color: #00B33C; 
+	border: 2px solid #094A09;
+	border-radius: 5px;
+	color: #FFFFFF;
+	padding-bottom: 1px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 1px;
+}
+
+.button:hover
+{
+	background-color: #094A09;
+	border: 2px solid #00B33C;
+}
+
+.login
+{
+	background-color: #90EE90;
+	border: 5px solid #094A09;
+	border-radius: 30px;
+	left: 50%;
+	position: absolute;
+	top: 50%;
+  transform: translate(-145px, -62px);
+}
+
+.title
+{	
+	color: #FFFFFF;
+	font: 20px rockwell;
+	height: 100%;
+	line-height: 50px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
