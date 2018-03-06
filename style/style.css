@@ -104,13 +104,18 @@ nav
 
 .login
 {
+  transform: translate(-145px, -62px);
+}
+
+.login, .request
+{
 	background-color: #90EE90;
 	border: 5px solid #094A09;
 	border-radius: 30px;
 	left: 50%;
 	position: absolute;
 	top: 50%;
-  transform: translate(-145px, -62px);
+
 }
 
 .navLeft, .navRight, .title
@@ -141,6 +146,11 @@ nav
 .oddRow
 {
   background-color: #90EE90;
+}
+
+.request
+{
+  transform: translate(-175px, -165px);
 }
 
 .smallButton

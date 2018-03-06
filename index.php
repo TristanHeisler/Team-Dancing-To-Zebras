@@ -46,7 +46,7 @@
 	<fieldset class="indexPageOptions">
 		<table>
 			<tr>
-				<td><a><button class="largeButton" type="button">Request Software Tool Access</button></a></td>
+				<td><a href="requestSoftwareTool.php"><button class="largeButton" type="button">Request Software Tool Access</button></a></td>
 			</tr>
 			<tr>
 				<td><a href="approverList.php"><button class="largeButton" type="button">View Approver List</button></a></td>
