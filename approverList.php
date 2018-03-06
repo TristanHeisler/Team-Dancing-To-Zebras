@@ -1,21 +1,46 @@
 <html>
 <head>
-	<title>HELL Approver List</title>
-  <!--Inline styling for convenience, will use CSS for the actual website-->
-  <style>
-      table 
-      {
-        border-collapse: collapse;
-      }
-
-      table, th, td 
-      {
-        border: 1px solid black;
-      } 
-  </style>
+	<link rel="stylesheet" type="text/css" href="style/style.css"/>
+	<title>Approver List</title>
 </head>
+	
 <body>
-<?php
+	<nav>
+		<a href="index.php" class="title">Health & Environment Labs Limited</a>
+		<?php
+			//Include the current session
+			session_start();
+
+			//If nobody is logged in, display the login button
+			if(!isset($_SESSION["loggedIn"]))
+			{
+				echo '<a href="login.php" class="navRight">Log In</a>';
+			}
+
+			else
+			{	
+				//If somebody is logged in, display their name, a welcome message and a logout button
+				echo	'<label class="navLeft">
+								Welcome, ' . $_SESSION["name"] . 
+							'!</label>
+							<a href="processing/userLogout.php" class="navRight">Log Out</a>';
+				
+				//If the user an an approver, give them the ability to approve tickets
+				if($_SESSION['isApprover'])
+				{
+					echo '<a class="navRight">View Approval Requests</a>';
+				}
+				
+				//If the user is an analyst, give them the ability to vet tickets
+				if($_SESSION['isAnalyst'])
+				{
+					echo '<a class="navRight">Vet Tickets</a>';
+				}
+			}
+		?>
+	</nav>
+	
+	<?php
   //Open database connection
 	$connection = mysqli_connect("localhost", "tristan", "w6dmZTT9gbQ2YBHH3LWjALwCXRGTsTd4", "ense470");
 
@@ -28,6 +53,7 @@
   //Obtain the list of approvers
   $sql = "SELECT\n"
     . "	SoftwareTool.name as `softwareToolName`,\n"
+		. "	SoftwareTool.acronym as `softwareToolAcronym`,\n"
     . "	User.name AS `approverName`,\n"
     . " ApproverList.approvalRegion AS `regionOfApproval`\n"
     . "FROM `ApproverList`\n"
@@ -40,22 +66,35 @@
 
   //Create a table to store the results
   echo
-  '<table>
-    <tr>
+  '<table class="approverList">
+    <tr class="headerRow">
       <th>Software Tool Name</th>
+			<th>Acronym</th>
       <th>Approver Name</th> 
       <th>Region of Approval</th>
     </tr>';
 
+	$isOddRow = true;
+	
   //Populate the table with information from the database
   while($currentApproverToolRelation = mysqli_fetch_assoc($listOfApprovers))
   {
+		if($isOddRow)
+		{
+			echo '<tr class="oddRow">';
+		}
+		else
+		{
+			echo '<tr class="evenRow">';
+		}
     echo 
-      '<tr>
-        <td>' . $currentApproverToolRelation["softwareToolName"] . '</td>
+        '<td>' . $currentApproverToolRelation["softwareToolName"] . '</td>
+				<td>' . $currentApproverToolRelation["softwareToolAcronym"] . '</td>
         <td>' . $currentApproverToolRelation["approverName"] . '</td>
         <td>' . $currentApproverToolRelation["regionOfApproval"] . '</td>
       </tr>';
+		
+		$isOddRow = !$isOddRow;
   }
   
   //Free the results set

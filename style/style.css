@@ -25,7 +25,7 @@ label.showError
 {
 	color: #000000;
 	display: inline;	
-  	display: inline-block;	
+  display: inline-block;	
 }
 
 nav
@@ -50,6 +50,21 @@ nav
 	text-align: right;
 }
 
+.approverList
+{
+  border: 1px solid #000000;
+  border-collapse: collapse;
+  margin-left:auto; 
+  margin-right:auto;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.approverList td, .approverList th
+{
+  border: 1px solid black;
+}
+
 .button
 {
 	background-color: #00B33C; 
@@ -66,6 +81,18 @@ nav
 {
 	background-color: #094A09;
 	border: 2px solid #00B33C;
+}
+
+.evenRow
+{
+  background-color: #388E3C;
+}
+
+.headerRow
+{
+  background-color: #094A09;
+  color: #FFFFFF;
+  font-size: 20px;
 }
 
 .login
@@ -92,7 +119,7 @@ nav
 
 .navRight
 {
-	border-left: 2px;
+	border-left: 2px;ta
 	border-left-color: #90EE90;
 	border-left-style: solid;
 	float: right;
@@ -102,6 +129,11 @@ nav
 {
 	background-color: #90EE90;
 	color: #000000;
+}
+
+.oddRow
+{
+  background-color: #90EE90;
 }
 
 .title
