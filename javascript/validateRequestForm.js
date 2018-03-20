@@ -226,7 +226,7 @@ function validateRequest(event)
     }
 
     //Update and display the warning text
-    nameWarning.innerHTML = "Please enter a username.";
+    nameWarning.innerHTML = "Please enter your name.";
     nameWarning.className = "showError";
     name.className = "showError"; 
   }
@@ -241,7 +241,7 @@ function validateRequest(event)
     }
 
     //Update and display the warning text
-    emailWarning.innerHTML = "Please enter an email address.";
+    emailWarning.innerHTML = "Please enter your email address.";
     emailWarning.className = "showError";
     email.className = "showError"; 
   }
