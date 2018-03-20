@@ -3,6 +3,7 @@
 
 <head>
   <link rel="stylesheet" type="text/css" href="style/style.css"/>
+	<script type="text/javascript" src="javascript/validateRequestForm.js"></script>
 	<title>Request Software</title>
 </head>
   
@@ -46,17 +47,29 @@
 		<fieldset class="request">
 			<table>
 				<tr>
+					<td></td>
+					<td class="alignLeft"><label class="hideError" id="nameWarning"></label></td>
+				</tr>
+				<tr>
 					<td class="alignRight">Name:</td>
-          <td class="alignLeft"><input class="requestTextbox" type="text" name="name" id="name" size="28"</td>
+          <td class="alignLeft"><input class="requestHideError" type="text" name="name" id="name" size="28"</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="alignLeft"><label class="hideError" id="emailWarning"></label></td>
 				</tr>
         <tr>
 					<td class="alignRight">Email:</td>
-					<td class="alignLeft"><input class="requestTextbox" type="text" name="email" id="email" size="28"/></td>
-				</tr> 
+					<td class="alignLeft"><input class="requestHideError" type="text" name="email" id="email" size="28"/></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="alignLeft"><label class="hideError" id="locationWarning"></label></td>
+				</tr>
         <tr>
 					<td class="alignRight">Location:</td>
           <td>
-						<select class="requestDropdown" name="location" id="location">
+						<select class="requestHideError" name="location" id="location">
 							<option/>
 							<option value="Alberta">Alberta</option>
 							<option value="British Columbia">British Columbia</option>
@@ -75,9 +88,13 @@
           </td>
 				</tr>
         <tr>
+					<tr>
+					<td></td>
+					<td class="alignLeft"><label class="hideError" id="toolWarning"></label></td>
+				</tr>
 					<td class="alignRight">Desired Tool:</td>
           <td>
-						<select class="requestDropdown" name="desiredTool" id="desiredTool">
+						<select class="requestHideError" name="desiredTool" id="desiredTool">
 							<option/>
 							<?php
 								//Open database connection
@@ -118,9 +135,13 @@
 						</select>
           </td>
 				</tr>
+				<tr>
+					<td></td>
+					<td class="alignLeft"><label class="hideError" id="reasoningWarning"></label></td>
+				</tr>
         <tr>
 					<td class="alignRight">Reasoning:</td>
-          <td><textarea class="requestTextbox" rows="10" name="reasoning" id="reasoning"></textarea></td>
+          <td><textarea class="requestHideError" rows="10" name="reasoning" id="reasoning"></textarea></td>
 				</tr>
         <tr>
 					<td class="alignCenter" colspan="2">
@@ -131,5 +152,7 @@
 			</table>
 		</fieldset>
 	</form>
+	
+	<script type="text/javascript" src="javascript/validateRequestForm_r.js"></script>
 </body>
 </html>

@@ -4,13 +4,13 @@ body
 	margin: 0%;
 }
 
-input.hideError
+input.hideError, select.showError, textarea.showError
 {
 	background-color: #FFFFFF;
 	color: #000000;
 }
 
-input.showError
+input.showError, select.showError, textarea.showError
 {
 	background-color: #094A09;
 	color: #FFFFFF;
@@ -150,7 +150,7 @@ nav
 
 .request
 {
-  transform: translate(-175px, -165px);
+  transform: translate(-176px, -176px);
 }
 
 .smallButton
@@ -178,4 +178,14 @@ nav
 	border-right-style: solid;
 	float: left;
 	font-size: 25px;
+}
+
+#desiredTool, #location
+{
+	width: 236px;
+}
+
+#email, #name, #reasoning
+{
+	width: 230px;
 }
