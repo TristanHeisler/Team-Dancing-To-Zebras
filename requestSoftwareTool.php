@@ -46,6 +46,14 @@
 	<form action="processing/submitRequest.php" method="post" enctype="multipart/form-data" id="submitRequest">
 		<fieldset class="request">
 			<table>
+				<?php
+					//If an request was just submitted, inform the user
+					if(isset($_GET['r']) && $_GET['r'] == 's')
+					{
+						echo '<tr><td colspan="2" class="alignCenter"><label class="showError">Your request has been submitted!</label></td></tr>';
+						echo '<tr><td colspan="2" class="alignCenter"><label class="showError">You will be emailed when your ticket has been processed.</label></td></tr>';
+					}
+				?>
 				<tr>
 					<td></td>
 					<td class="alignLeft"><label class="hideError" id="nameWarning"></label></td>
