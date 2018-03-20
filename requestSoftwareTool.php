@@ -42,45 +42,90 @@
     ?>
 	</nav>
 	
-	<form action="" method="post" enctype="multipart/form-data">
+	<form action="processing/submitRequest.php" method="post" enctype="multipart/form-data" id="submitRequest">
 		<fieldset class="request">
 			<table>
 				<tr>
 					<td class="alignRight">Name:</td>
-          <td class="alignLeft"><input type="text" name="name" id="name" size="28"</td>
+          <td class="alignLeft"><input class="requestTextbox" type="text" name="name" id="name" size="28"</td>
 				</tr>
         <tr>
 					<td class="alignRight">Email:</td>
-					<td class="alignLeft"><input type="text" name="email" id="email" size="28"/></td>
-				</tr>
+					<td class="alignLeft"><input class="requestTextbox" type="text" name="email" id="email" size="28"/></td>
+				</tr> 
         <tr>
 					<td class="alignRight">Location:</td>
           <td>
-            <input list="location" size="28">
-              <datalist id="location">
-                <option value="British Columbia">
-                <option value="Alberta">
-             </datalist> 
+						<select class="requestDropdown" name="location" id="location">
+							<option/>
+							<option value="Alberta">Alberta</option>
+							<option value="British Columbia">British Columbia</option>
+							<option value="Manitoba">Manitoba</option>
+							<option value="New Brunswick">New Brunswick</option>
+							<option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+							<option value="Northwest Territories">Northwest Territories</option>
+							<option value="Nova Scotia">Nova Scotia</option>
+							<option value="Nunavut">Nunavut</option>
+							<option value="Ontario">Ontario</option>
+							<option value="Prince Edward Island">Prince Edward Island</option>
+							<option value="Quebec">Quebec</option>
+							<option value="Saskatchewan">Saskatchewan</option>
+							<option value="Yukon">Yukon</option>
+						</select>				
           </td>
 				</tr>
         <tr>
 					<td class="alignRight">Desired Tool:</td>
           <td>
-            <input list="desiredTool" size="28">
-              <datalist id="desiredTool">
-                <option value="Operating Map of Gastropathy">
-                <option value="Limited Operating Liability">
-             </datalist> 
+						<select class="requestDropdown" name="desiredTool" id="desiredTool">
+							<option/>
+							<?php
+								//Open database connection
+								$connection = mysqli_connect("localhost", "tristan", "w6dmZTT9gbQ2YBHH3LWjALwCXRGTsTd4", "ense470");
+
+								//Check if the connection was made
+								if(!$connection)
+								{
+									die("Connection failed: " . mysqli_connect_error());
+								}
+							
+								//Obtain the list of software tools
+								$sql = "SELECT\n"
+									. "	toolID, name, acronym \n"
+									. "FROM `SoftwareTool` \n"
+									. "ORDER BY name ASC";
+								$listOfTools = mysqli_query($connection, $sql);
+							
+								//Close the database connection
+ 								mysqli_close($connection);
+							
+								//Populate the dropdown menu with information from the database
+								while($currentTool = mysqli_fetch_assoc($listOfTools))
+								{
+									echo '<option value="'. $currentTool["toolID"] . '">' . $currentTool["name"];
+									
+									if($currentTool["acronym"])
+									{
+										echo ' (' . $currentTool["acronym"] . ')';
+									}
+									
+									echo '</option>';
+								}
+  
+									//Free the results set
+									mysqli_free_result($listOfApprovers);
+							?>
+						</select>
           </td>
 				</tr>
         <tr>
 					<td class="alignRight">Reasoning:</td>
-          <td><textarea cols="30" rows="10"></textarea></td>
+          <td><textarea class="requestTextbox" rows="10" name="reasoning" id="reasoning"></textarea></td>
 				</tr>
         <tr>
 					<td class="alignCenter" colspan="2">
             <input class="smallButton" type="reset" value="Clear" name="clear" id="clear"/>
-						<input class="smallButton" type="submit" value="Submit" name="submit" id="submit"/>
+						<input class="smallButton" type="submit" value="Submit" name="request" id="request"/>
 					</td>
 				</tr>
 			</table>
