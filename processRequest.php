@@ -63,12 +63,13 @@
 			. "INNER JOIN SoftwareTool ON SoftwareRequest.softwareToolID = SoftwareTool.toolID\n"
 			. "INNER JOIN ApproverList ON SoftwareRequest.softwareToolID = ApproverList.softwareToolID\n"
 			. "WHERE ApproverList.approverID = " . $_SESSION["userID"] . "\n"
+      . "AND SoftwareRequest.approvalStatus = 'Pending'\n"
       . "AND SoftwareRequest.requestID = " . $_GET['id'] . "\n"
       . "AND (ApproverList.approvalRegion = 'Canada' OR ApproverList.approvalRegion LIKE CONCAT('%', SoftwareRequest.requesterLocation, '%'))"
 			. "ORDER BY requestID ASC";
     $pendingRequest = mysqli_query($connection, $sql);
   
-    //If no request with the given ID exists or the user is not an approver for the tool, return them to the view requests page
+    //If no pending request with the given ID exists or the user is not an approver for the tool, return them to the view requests page
     if(!mysqli_num_rows($pendingRequest))
     {
         header("location: viewRequests.php");
@@ -106,8 +107,8 @@
 				</tr>
         <tr>
 					<td class="alignCenter" colspan="2">
-            <a><button class="smallButton" type="button">Approve</button></a>
-						<a><button class="smallButton" type="button">Deny</button></a>
+            <a href="processing/setApproval.php?id=<?php echo $requestID; ?>&a=Approved"><button class="smallButton" type="button">Approve</button></a>
+						<a href="processing/setApproval.php?id=<?php echo $requestID; ?>&a=Denied"><button class="smallButton" type="button">Deny</button></a>
 					</td>
 				</tr>
 			</table>

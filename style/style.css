@@ -146,12 +146,6 @@ nav
 	color: #000000;
 }
 
-.noPendingRequests
-{
-	font: 20px rockwell;
-	text-align: center;
-}
-
 .oddRow
 {
   background-color: #90EE90;
@@ -203,6 +197,12 @@ nav
 	border-right-style: solid;
 	float: left;
 	font-size: 25px;
+}
+
+.userInfo
+{
+	font: 20px rockwell;
+	text-align: center;
 }
 
 #desiredTool, #location

@@ -38,6 +38,12 @@
 	<p class="pageHeader">Pending Requests</p>
 	
 	<?php
+		//Inform the user if a request has just been approved or denied
+		if(isset($_GET['id']) && isset($_GET['a']))
+	 	{
+			echo '<p class="userInfo">Request #' . $_GET['id'] . ' has been ' . strtolower($_GET['a']) . '.</p>';
+	 	}
+	
 		//Open database connection
 		$connection = mysqli_connect("localhost", "tristan", "w6dmZTT9gbQ2YBHH3LWjALwCXRGTsTd4", "ense470");
 
@@ -56,6 +62,7 @@
 			. "INNER JOIN SoftwareTool ON SoftwareRequest.softwareToolID = SoftwareTool.toolID\n"
 			. "INNER JOIN ApproverList ON SoftwareRequest.softwareToolID = ApproverList.softwareToolID\n"
 			. "WHERE ApproverList.approverID = " . $_SESSION["userID"] . "\n"
+			. "AND SoftwareRequest.approvalStatus = 'Pending'\n"
 			. "AND (ApproverList.approvalRegion = 'Canada' OR ApproverList.approvalRegion LIKE CONCAT('%', SoftwareRequest.requesterLocation, '%'))"
 			. "ORDER BY requestID ASC";
 		$listOfRequests = mysqli_query($connection, $sql);
@@ -105,7 +112,7 @@
 		//If no pending requests exist, inform the user
 	else
 	{
-		echo '<p class="noPendingRequests">You have no pending requests at this time.</p>';
+		echo '<p class="userInfo">You have no pending requests at this time.</p>';
 	}
 
 		//Close the database connection
