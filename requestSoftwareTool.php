@@ -60,7 +60,7 @@
 				</tr>
 				<tr>
 					<td class="alignRight">Name:</td>
-          <td class="alignLeft"><input class="requestHideError" type="text" name="name" id="name" size="28"/></td>
+          <td class="alignLeft"><input class="hideError" type="text" name="name" id="name" size="28"/></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -68,7 +68,7 @@
 				</tr>
         <tr>
 					<td class="alignRight">Email:</td>
-					<td class="alignLeft"><input class="requestHideError" type="text" name="email" id="email" size="28"/></td>
+					<td class="alignLeft"><input class="hideError" type="text" name="email" id="email" size="28"/></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -77,7 +77,7 @@
         <tr>
 					<td class="alignRight">Location:</td>
           <td>
-						<select class="requestHideError" name="location" id="location">
+						<select class="hideError" name="location" id="location">
 							<option/>
 							<option value="Alberta">Alberta</option>
 							<option value="British Columbia">British Columbia</option>
@@ -102,7 +102,7 @@
 				</tr>
 					<td class="alignRight">Desired Tool:</td>
           <td>
-						<select class="requestHideError" name="desiredTool" id="desiredTool">
+						<select class="hideError" name="desiredTool" id="desiredTool">
 							<option/>
 							<?php
 								//Open database connection
@@ -149,7 +149,7 @@
 				</tr>
         <tr>
 					<td class="alignRight">Reasoning:</td>
-          <td><textarea class="requestHideError" rows="10" name="reasoning" id="reasoning"></textarea></td>
+          <td><textarea class="hideError" rows="10" name="reasoning" id="reasoning"></textarea></td>
 				</tr>
         <tr>
 					<td class="alignCenter" colspan="2">
