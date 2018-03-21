@@ -17,7 +17,7 @@
 			//If the user is not logged in as an approver, return them to the index page
 			if(!$_SESSION["isApprover"])
 			{
-				header("location: ../login.php");
+				header("location: index.php");
         exit;
 			}
     
