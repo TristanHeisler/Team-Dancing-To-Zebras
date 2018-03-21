@@ -60,7 +60,7 @@
 				</tr>
 				<tr>
 					<td class="alignRight">Name:</td>
-          <td class="alignLeft"><input class="requestHideError" type="text" name="name" id="name" size="28"</td>
+          <td class="alignLeft"><input class="requestHideError" type="text" name="name" id="name" size="28"/></td>
 				</tr>
 				<tr>
 					<td></td>

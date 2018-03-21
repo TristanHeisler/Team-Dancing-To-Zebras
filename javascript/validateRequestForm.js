@@ -13,7 +13,7 @@ function checkNameEntered(event)
   if(name === "")
   {  
     //Increment the number of errors if appropriate
-    if(name.className === "hideError")
+    if(warning.className === "hideError")
     {
         numberOfErrors++;
     }
@@ -82,17 +82,17 @@ function checkEmailEntered(event)
 
 function checkLocationEntered(event)
 {
-  //Obtain the contents of the location textbox
+  //Obtain the contents of the location dropdown
   var location = event.currentTarget.value;
 
   //Access the warning text
   var warning = document.getElementById("locationWarning");  
 
-  //Ensure a username was entered
+  //Ensure a location was entered
   if(location === "")
   {  
     //Increment the number of errors if appropriate
-    if(location.className === "hideError")
+    if(warning.className === "hideError")
     {
         numberOfErrors++;
     }
@@ -120,7 +120,7 @@ function checkLocationEntered(event)
 
 function checkToolEntered(event)
 {
-  //Obtain the contents of the tool textbox
+  //Obtain the contents of the tool dropdown
   var tool = event.currentTarget.value;
 
   //Access the warning text
@@ -130,7 +130,7 @@ function checkToolEntered(event)
   if(tool === "")
   {  
     //Increment the number of errors if appropriate
-    if(tool.className === "hideError")
+    if(warning.className === "hideError")
     {
         numberOfErrors++;
     }
@@ -168,7 +168,7 @@ function checkReasoningEntered(event)
   if(reasoning === "")
   {  
     //Increment the number of errors if appropriate
-    if(reasoning.className === "hideError")
+    if(warning.className === "hideError")
     {
         numberOfErrors++;
     }
@@ -290,7 +290,7 @@ function validateRequest(event)
     reasoningWarning.className = "showError";
     reasoning.className = "showError"; 
   }
-
+  
   //If the form is invalid (any errors), do not call the PHP process
   if(numberOfErrors)
   {	
