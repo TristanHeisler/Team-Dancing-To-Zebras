@@ -27,7 +27,7 @@
             '!</label>
             <a href="processing/userLogout.php" class="navRight">Log Out</a>';
 
-      //If the user is also an approver, give them the ability to approve o deny requests
+      //If the user is also an approver, give them the ability to approve to deny requests
       if($_SESSION['isApprover'])
       {
         echo '<a href="viewRequests.php" class="navRight">View Approval Requests</a>';
@@ -41,7 +41,7 @@
 		//Inform the user if a ticket has just been approved or denied
 		if(isset($_GET['id']) && isset($_GET['a']))
 	 	{
-			echo '<p class="userInfo">Request #' . $_GET['id'] . ' has been ' . strtolower($_GET['a']) . '.</p>';
+			echo '<p class="userInfo">Ticket #' . $_GET['id'] . ' has been ' . strtolower($_GET['a']) . '.</p>';
 	 	}
 	
 		//Open database connection
@@ -61,6 +61,7 @@
 			. "	SoftwareRequest.approvalStatus as 'approvalStatus'\n"
 			. "FROM SoftwareRequest\n"
 			. "INNER JOIN SoftwareTool ON SoftwareRequest.softwareToolID = SoftwareTool.toolID\n"
+			. "WHERE SoftwareRequest.accessStatus = 'Pending'\n"
 			. "ORDER BY requestID ASC";
 		$listOfTickets = mysqli_query($connection, $sql);
 	
@@ -92,7 +93,7 @@
 				}
 
 				echo 
-						'<td class="alignCenter"><a>' . $currentTicket["requestID"] . '</a></td>
+						'<td class="alignCenter"><a href="vetTicket.php?id=' . $currentTicket["requestID"] . '">' . $currentTicket["requestID"] . '</a></td>
 						<td>' . $currentTicket["requesterName"] . '</td>
 						<td>' . $currentTicket["toolName"] . '</td>
 						<td>' . $currentTicket["approvalStatus"] . '</td>
