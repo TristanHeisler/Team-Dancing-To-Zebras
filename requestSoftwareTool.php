@@ -31,7 +31,7 @@
 				//If the user an an approver, give them the ability to approve tickets
 				if($_SESSION['isApprover'])
 				{
-					echo '<a class="navRight">View Approval Requests</a>';
+					echo '<a href="viewRequests.php" class="navRight">View Approval Requests</a>';
 				}
 				
 				//If the user is an analyst, give them the ability to vet tickets

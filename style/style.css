@@ -107,15 +107,18 @@ nav
   transform: translate(-145px, -62px);
 }
 
-.login, .request
+.login, .request, .requestDetails
 {
 	background-color: #90EE90;
 	border: 5px solid #094A09;
 	border-radius: 30px;
+}
+
+.login, .request
+{
 	left: 50%;
 	position: absolute;
 	top: 50%;
-
 }
 
 .navLeft, .navRight, .title
@@ -160,9 +163,19 @@ nav
 	text-align: center;
 }
 
+.reasoning
+{
+	max-width: 350px;
+}
+
 .request
 {
   transform: translate(-176px, -176px);
+}
+
+.requestDetails
+{
+	display: inline;
 }
 
 .smallButton

@@ -56,6 +56,7 @@
 			. "INNER JOIN SoftwareTool ON SoftwareRequest.softwareToolID = SoftwareTool.toolID\n"
 			. "INNER JOIN ApproverList ON SoftwareRequest.softwareToolID = ApproverList.softwareToolID\n"
 			. "WHERE ApproverList.approverID = " . $_SESSION["userID"] . "\n"
+			. "AND (ApproverList.approvalRegion = 'Canada' OR ApproverList.approvalRegion LIKE CONCAT('%', SoftwareRequest.requesterLocation, '%'))"
 			. "ORDER BY requestID ASC";
 		$listOfRequests = mysqli_query($connection, $sql);
 	
@@ -86,7 +87,7 @@
 				}
 
 				echo 
-						'<td class="alignCenter">' . $currentRequest["requestID"] . '</td>
+						'<td class="alignCenter"><a href="processRequest.php?id=' . $currentRequest["requestID"] . '">' . $currentRequest["requestID"] . '</a></td>
 						<td>' . $currentRequest["requesterName"] . '</td>
 						<td>' . $currentRequest["toolName"] . '</td>
 					</tr>';
