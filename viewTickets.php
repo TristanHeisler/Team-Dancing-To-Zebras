@@ -14,31 +14,31 @@
 			//Include the current session
 			session_start();
 
-			//If the user is not logged in as an approver, return them to the index page
-			if(!$_SESSION["isApprover"])
+			//If the user is not logged in as an analyst, return them to the index page
+			if(!$_SESSION["isAnalyst"])
 			{
 				header("location: index.php");
         exit;
 			}
     
-			//Display the approver's name, a welcome message and a logout button
+			//Display the analyst's name, a welcome message and a logout button
       echo	'<label class="navLeft">
               Welcome, ' . $_SESSION["name"] . 
             '!</label>
             <a href="processing/userLogout.php" class="navRight">Log Out</a>';
 
-      //If the user is also an analyst, give them the ability to vet tickets
-      if($_SESSION['isAnalyst'])
+      //If the user is also an approver, give them the ability to approve o deny requests
+      if($_SESSION['isApprover'])
       {
-        echo '<a href="viewTickets.php" class="navRight">Vet Tickets</a>';
+        echo '<a href="viewRequests.php" class="navRight">View Approval Requests</a>';
       }      
     ?>
   </nav>
 	
-	<p class="pageHeader">Pending Requests</p>
+	<p class="pageHeader">Pending Tickets</p>
 	
 	<?php
-		//Inform the user if a request has just been approved or denied
+		//Inform the user if a ticket has just been approved or denied
 		if(isset($_GET['id']) && isset($_GET['a']))
 	 	{
 			echo '<p class="userInfo">Request #' . $_GET['id'] . ' has been ' . strtolower($_GET['a']) . '.</p>';
@@ -57,18 +57,15 @@
 		$sql = "SELECT\n"
 			. "	SoftwareRequest.requestID as 'requestID',\n"
 			. "	SoftwareRequest.requesterName as 'requesterName',\n"
-			. "	SoftwareTool.name as 'toolName'\n"
+			. "	SoftwareTool.name as 'toolName',\n"
+			. "	SoftwareRequest.approvalStatus as 'approvalStatus'\n"
 			. "FROM SoftwareRequest\n"
 			. "INNER JOIN SoftwareTool ON SoftwareRequest.softwareToolID = SoftwareTool.toolID\n"
-			. "INNER JOIN ApproverList ON SoftwareRequest.softwareToolID = ApproverList.softwareToolID\n"
-			. "WHERE ApproverList.approverID = " . $_SESSION["userID"] . "\n"
-			. "AND SoftwareRequest.approvalStatus = 'Pending'\n"
-			. "AND (ApproverList.approvalRegion = 'Canada' OR ApproverList.approvalRegion LIKE CONCAT('%', SoftwareRequest.requesterLocation, '%'))"
 			. "ORDER BY requestID ASC";
-		$listOfRequests = mysqli_query($connection, $sql);
+		$listOfTickets = mysqli_query($connection, $sql);
 	
 		//Display the list of pending requests if any exist
-		if(mysqli_num_rows($listOfRequests))
+		if(mysqli_num_rows($listOfTickets))
 		{
 			//Create a table to store the results
 			echo
@@ -77,12 +74,13 @@
 					<th>Request ID</th>
 					<th>Requester Name</th>
 					<th>Software Tool Name</th>
+					<th>Approval Status</th>
 				</tr>';
 
 			$isOddRow = true;
 
 			//Populate the list of requests using information retrieved from the database
-			while($currentRequest = mysqli_fetch_assoc($listOfRequests))
+			while($currentTicket = mysqli_fetch_assoc($listOfTickets))
 			{
 				if($isOddRow)
 				{
@@ -94,16 +92,17 @@
 				}
 
 				echo 
-						'<td class="alignCenter"><a href="processRequest.php?id=' . $currentRequest["requestID"] . '">' . $currentRequest["requestID"] . '</a></td>
-						<td>' . $currentRequest["requesterName"] . '</td>
-						<td>' . $currentRequest["toolName"] . '</td>
+						'<td class="alignCenter"><a>' . $currentTicket["requestID"] . '</a></td>
+						<td>' . $currentTicket["requesterName"] . '</td>
+						<td>' . $currentTicket["toolName"] . '</td>
+						<td>' . $currentTicket["approvalStatus"] . '</td>
 					</tr>';
 
 				$isOddRow = !$isOddRow;
 			}	
   
 			//Free the results set
-			mysqli_free_result($listOfRequests);
+			mysqli_free_result($listOfTickets);
 
 			//Finish the table
 			echo '</table>';
@@ -112,7 +111,7 @@
 		//If no pending requests exist, inform the user
 		else
 		{
-			echo '<p class="userInfo">You have no pending requests at this time.</p>';
+			echo '<p class="userInfo">There are no pending tickets at this time.</p>';
 		}
 
 		//Close the database connection

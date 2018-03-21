@@ -34,7 +34,7 @@
 				//If the user is an analyst, give them the ability to vet tickets
 				if($_SESSION['isAnalyst'])
 				{
-					echo '<a class="navRight">Vet Tickets</a>';
+					echo '<a href="viewTickets.php" class="navRight">Vet Tickets</a>';
 				}
 			}
 		?>
@@ -69,7 +69,7 @@
 
   //Create a table to store the results
   echo
-  '<table class="approverList">
+  '<table class="infoTable">
     <tr class="headerRow">
       <th>Software Tool Name</th>
 			<th>Acronym</th>

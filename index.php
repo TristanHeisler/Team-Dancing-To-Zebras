@@ -37,7 +37,7 @@
 				//If the user is an analyst, give them the ability to vet tickets
 				if($_SESSION['isAnalyst'])
 				{
-					echo '<a class="navRight">Vet Tickets</a>';
+					echo '<a href="viewTickets.php" class="navRight">Vet Tickets</a>';
 				}
 			}
 			?>
