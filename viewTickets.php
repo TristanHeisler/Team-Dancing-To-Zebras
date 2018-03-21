@@ -4,7 +4,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="style/style.css"/>
-	<title>View Requests</title>
+	<title>View Tickets</title>
 </head>
 	
 <body>
