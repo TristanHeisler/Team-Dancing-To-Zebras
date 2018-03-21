@@ -40,6 +40,8 @@
 		?>
 	</nav>
 	
+	<p class="pageHeader">Approver List</p>
+	
 	<?php
   //Open database connection
 	$connection = mysqli_connect("localhost", "tristan", "w6dmZTT9gbQ2YBHH3LWjALwCXRGTsTd4", "ense470");
