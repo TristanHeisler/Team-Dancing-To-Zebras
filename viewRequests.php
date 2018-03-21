@@ -35,7 +35,7 @@
     ?>
   </nav>
 	
-	<p>Pending Requests</p>
+	<p class="pageHeader">Pending Requests</p>
 	
 	<?php
 		//Open database connection
@@ -59,31 +59,53 @@
 			. "ORDER BY requestID ASC";
 		$listOfRequests = mysqli_query($connection, $sql);
 	
-		//Create a table to store the results
-		echo
-		'<table class="approverRequests">
-			<tr class="headerRow">
-				<th>Request ID</th>
-				<th>Requester Name</th>
-				<th>Software Tool Name</th>
-			</tr>';
-	
-		//Populate the list of requests using information retrieved from the database
-		while($currentRequest = mysqli_fetch_assoc($listOfRequests))
+		//Display the list of pending requests if any exist
+		if(mysqli_num_rows($listOfRequests))
 		{
-			echo 
-				'</tr>
-					<td class="alignCenter">' . $currentRequest["requestID"] . '</td>
-					<td>' . $currentRequest["requesterName"] . '</td>
-					<td>' . $currentRequest["toolName"] . '</td>
-      	</tr>';
-		}
+			//Create a table to store the results
+			echo
+			'<table class="approverRequests">
+				<tr class="headerRow">
+					<th>Request ID</th>
+					<th>Requester Name</th>
+					<th>Software Tool Name</th>
+				</tr>';
+
+			$isOddRow = true;
+
+			//Populate the list of requests using information retrieved from the database
+			while($currentRequest = mysqli_fetch_assoc($listOfRequests))
+			{
+				if($isOddRow)
+				{
+					echo '<tr class="oddRow">';
+				}
+				else
+				{
+					echo '<tr class="evenRow">';
+				}
+
+				echo 
+						'<td class="alignCenter">' . $currentRequest["requestID"] . '</td>
+						<td>' . $currentRequest["requesterName"] . '</td>
+						<td>' . $currentRequest["toolName"] . '</td>
+					</tr>';
+
+				$isOddRow = !$isOddRow;
+			}	
   
-		//Free the results set
-		mysqli_free_result($listOfApprovers);
+			//Free the results set
+			mysqli_free_result($listOfApprovers);
+
+			//Finish the table
+			echo '</table>';
+		}
 	
-		//Finish the table
-  	echo '</table>';
+		//If no pending requests exist, inform the user
+	else
+	{
+		echo '<p class="noPendingRequests">You have no pending requests at this time.</p>';
+	}
 
 		//Close the database connection
 		mysqli_close($connection);

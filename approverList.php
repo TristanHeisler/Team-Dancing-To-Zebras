@@ -28,7 +28,7 @@
 				//If the user an an approver, give them the ability to approve tickets
 				if($_SESSION['isApprover'])
 				{
-					echo '<a class="navRight">View Approval Requests</a>';
+					echo '<a href="viewRequests.php" class="navRight">View Approval Requests</a>';
 				}
 				
 				//If the user is an analyst, give them the ability to vet tickets
@@ -58,7 +58,8 @@
     . " ApproverList.approvalRegion AS `regionOfApproval`\n"
     . "FROM `ApproverList`\n"
     . "INNER JOIN `SoftwareTool` ON ApproverList.softwareToolID = SoftwareTool.toolID\n"
-    . "INNER JOIN `User` ON ApproverList.approverID = User.userID";
+    . "INNER JOIN `User` ON ApproverList.approverID = User.userID\n"
+		. "ORDER BY softwareToolName ASC, approverName ASC";
   $listOfApprovers = mysqli_query($connection, $sql);
   
   //Close the database connection

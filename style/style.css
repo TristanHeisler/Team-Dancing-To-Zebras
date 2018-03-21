@@ -50,7 +50,7 @@ nav
 	text-align: right;
 }
 
-.approverList
+.approverList, .approverRequests
 {
   border: 1px solid #000000;
   border-collapse: collapse;
@@ -60,7 +60,7 @@ nav
   text-align: left;
 }
 
-.approverList td, .approverList th
+.approverList td, .approverList th, .approverRequests td, .approverRequests th
 {
   border: 1px solid black;
 }
@@ -143,9 +143,21 @@ nav
 	color: #000000;
 }
 
+.noPendingRequests
+{
+	font: 20px rockwell;
+	text-align: center;
+}
+
 .oddRow
 {
   background-color: #90EE90;
+}
+
+.pageHeader
+{
+	font: 30px rockwell;
+	text-align: center;
 }
 
 .request
